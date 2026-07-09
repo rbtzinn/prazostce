@@ -406,6 +406,12 @@
   .pc-item-text{flex:1;}
 
   footer{text-align:center; color:var(--ink-soft); font-size:12px; margin-top:50px; padding-top:22px; border-top:1px solid var(--line);}
+  
+  .lucide {
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: text-bottom;
+  }
 </style>
 </head>
 <body>
@@ -420,11 +426,11 @@
 
 <!-- ========== TAB BAR — fora do container, fixa no topo ========== -->
 <nav class="tab-bar" id="tabBar">
-  <button class="tab-btn active" data-tab="admissao" type="button"><i class="tab-icon">👥</i> Admissão</button>
-  <button class="tab-btn" data-tab="sagres" type="button"><i class="tab-icon">📊</i> SAGRES Pessoal</button>
-  <button class="tab-btn" data-tab="remessa" type="button"><i class="tab-icon">📤</i> Remessa TCE</button>
-  <button class="tab-btn" data-tab="pc" type="button"><i class="tab-icon">📋</i> Prestação de Contas</button>
-  <button class="tab-btn" data-tab="cadastro" type="button"><i class="tab-icon">🏛️</i> Cadastro UJ</button>
+  <button class="tab-btn active" data-tab="admissao" type="button"><i class="tab-icon"><i data-lucide='users' stroke-width='2.5'></i></i> Admissão</button>
+  <button class="tab-btn" data-tab="sagres" type="button"><i class="tab-icon"><i data-lucide='bar-chart-2' stroke-width='2.5'></i></i> SAGRES Pessoal</button>
+  <button class="tab-btn" data-tab="remessa" type="button"><i class="tab-icon"><i data-lucide='send' stroke-width='2.5'></i></i> Remessa TCE</button>
+  <button class="tab-btn" data-tab="pc" type="button"><i class="tab-icon"><i data-lucide='clipboard-list' stroke-width='2.5'></i></i> Prestação de Contas</button>
+  <button class="tab-btn" data-tab="cadastro" type="button"><i class="tab-icon"><i data-lucide='landmark' stroke-width='2.5'></i></i> Cadastro UJ</button>
 </nav>
 
 <div class="wrap">
@@ -438,17 +444,17 @@
     <div class="wizard-step-label"><span class="num">1</span> Qual foi o tipo de admissão?</div>
     <div class="type-choices" id="tipoChoices">
       <button class="type-btn active" data-type="concurso" type="button">
-        <span class="icon">🎓</span>
+        <span class="icon"><i data-lucide='graduation-cap' stroke-width='2.5'></i></span>
         <span class="name">Concurso Público</span>
         <span class="hint">Nomeação de aprovado em concurso</span>
       </button>
       <button class="type-btn" data-type="temporaria" type="button">
-        <span class="icon">📋</span>
+        <span class="icon"><i data-lucide='clipboard-list' stroke-width='2.5'></i></span>
         <span class="name">Contratação Temporária</span>
         <span class="hint">Contrato por prazo determinado</span>
       </button>
       <button class="type-btn" data-type="provimento" type="button">
-        <span class="icon">📈</span>
+        <span class="icon"><i data-lucide='trending-up' stroke-width='2.5'></i></span>
         <span class="name">Provimento Derivado</span>
         <span class="hint">Promoção, progressão etc.</span>
       </button>
@@ -486,15 +492,15 @@
     </div>
 
     <div class="view-toggle">
-      <button class="view-toggle-btn active" data-view="list" type="button">📄 Lista</button>
-      <button class="view-toggle-btn" data-view="calendar" type="button">🗓️ Calendário</button>
+      <button class="view-toggle-btn active" data-view="list" type="button"><i data-lucide='file-text' stroke-width='2.5'></i> Lista</button>
+      <button class="view-toggle-btn" data-view="calendar" type="button"><i data-lucide='calendar' stroke-width='2.5'></i> Calendário</button>
     </div>
 
     <div class="deadline-view show" id="viewList">
       <div class="category" data-type="concurso">
         <button class="cat-toggle" type="button">
           <span class="cat-toggle-left">
-            <span class="cat-icon">🎓</span>
+            <span class="cat-icon"><i data-lucide='graduation-cap' stroke-width='2.5'></i></span>
             <span>
               <p class="cat-title">Concurso Público</p>
               <p class="cat-sub">Nomeação de candidatos aprovados</p>
@@ -533,7 +539,7 @@
       <div class="category" data-type="temporaria">
         <button class="cat-toggle" type="button">
           <span class="cat-toggle-left">
-            <span class="cat-icon">📋</span>
+            <span class="cat-icon"><i data-lucide='clipboard-list' stroke-width='2.5'></i></span>
             <span>
               <p class="cat-title">Contratação Temporária</p>
               <p class="cat-sub">Regra única — não mudou em 2025</p>
@@ -565,7 +571,7 @@
       <div class="category" data-type="provimento">
         <button class="cat-toggle" type="button">
           <span class="cat-toggle-left">
-            <span class="cat-icon">📈</span>
+            <span class="cat-icon"><i data-lucide='trending-up' stroke-width='2.5'></i></span>
             <span>
               <p class="cat-title">Provimento Derivado</p>
               <p class="cat-sub">Promoções, progressões e afins</p>
@@ -663,7 +669,7 @@
       </div>
 
       <div class="sei-footer-note">
-        <span>ℹ️</span>
+        <span><i data-lucide='info' stroke-width='2.5'></i></span>
         <span>Isso vale para os três tipos de admissão — <b>Concurso Público</b>, <b>Contratação Temporária</b> e <b>Provimento Derivado</b>. O objetivo é ter, formalizado no SEI, a confirmação de que cada remessa foi de fato feita.</span>
       </div>
     </div>
@@ -676,22 +682,22 @@
     </div>
     <div class="warnings">
       <div class="warn-card">
-        <span class="w-icon">📨</span>
+        <span class="w-icon"><i data-lucide='mail' stroke-width='2.5'></i></span>
         <h3>Envie a seleção antes da admissão</h3>
         <p>Os dados do processo seletivo (edital, homologação) vão para o TCE-PE <b>antes</b> das remessas de admissão: os dados iniciais na data de publicação do edital, e os dados do resultado final em até <b>5 dias</b> após a homologação.</p>
       </div>
       <div class="warn-card">
-        <span class="w-icon">🗒️</span>
+        <span class="w-icon"><i data-lucide='sticky-note' stroke-width='2.5'></i></span>
         <h3>Ninguém foi admitido no período?</h3>
         <p>Mesmo assim, registre a certidão negativa no sistema dentro do mesmo prazo, para o processo não ficar pendente.</p>
       </div>
       <div class="warn-card">
-        <span class="w-icon">📅</span>
+        <span class="w-icon"><i data-lucide='calendar-days' stroke-width='2.5'></i></span>
         <h3>Prazo caiu em fim de semana ou feriado?</h3>
         <p>A data final é prorrogada automaticamente para o primeiro dia útil seguinte. Não precisa fazer nada além de enviar até esse dia.</p>
       </div>
       <div class="warn-card">
-        <span class="w-icon">☎️</span>
+        <span class="w-icon"><i data-lucide='phone' stroke-width='2.5'></i></span>
         <h3>Data bem perto da virada de agosto/2025?</h3>
         <p>Este guia usa agosto de 2025 como referência para a mudança da Resolução TC 289/2025. Em caso de dúvida, confirme com a Assessoria Especial de Controle Interno.</p>
       </div>
@@ -705,7 +711,7 @@
 <div class="tab-panel" id="panel-sagres">
 
   <div class="info-hero-card" data-watermark="SAGRES">
-    <div class="info-icon" style="background:var(--sagres-bg); color:var(--sagres);">📊</div>
+    <div class="info-icon" style="background:var(--sagres-bg); color:var(--sagres);"><i data-lucide='bar-chart-2' stroke-width='2.5'></i></div>
     <h2>SAGRES — Módulo de Pessoal</h2>
     <p class="info-desc">Envio mensal das informações de pessoal ao sistema SAGRES do TCE-PE. O envio é obrigatório <b>todo mês</b>, independentemente de haver movimentação.</p>
 
@@ -734,7 +740,7 @@
         <span class="num">nº 00000.000000/0000-00</span>
       </div>
       <div class="sei-footer-note">
-        <span>ℹ️</span>
+        <span><i data-lucide='info' stroke-width='2.5'></i></span>
         <span>O envio do módulo de pessoal no SAGRES deve ser feito <b>mensalmente</b>. A Compliance vai alertar, mas a responsabilidade do envio é do setor GGP.</span>
       </div>
     </div>
@@ -747,7 +753,7 @@
 <div class="tab-panel" id="panel-remessa">
 
   <div class="info-hero-card" data-watermark="TCE">
-    <div class="info-icon" style="background:var(--remessa-bg); color:var(--remessa);">📤</div>
+    <div class="info-icon" style="background:var(--remessa-bg); color:var(--remessa);"><i data-lucide='send' stroke-width='2.5'></i></div>
     <h2>Remessa TCE-PE</h2>
     <p class="info-desc">Envio mensal da Remessa ao e-TCEPE. Inclui dados financeiros, contábeis e de gestão exigidos mensalmente pelo Tribunal de Contas.</p>
 
@@ -776,7 +782,7 @@
         <span class="num">nº 00000.000000/0000-00</span>
       </div>
       <div class="sei-footer-note">
-        <span>ℹ️</span>
+        <span><i data-lucide='info' stroke-width='2.5'></i></span>
         <span>A Remessa ao e-TCEPE deve ser feita <b>mensalmente</b> pelo setor GCC. A Compliance acompanha e alerta, mas a responsabilidade do envio é do setor.</span>
       </div>
     </div>
@@ -789,7 +795,7 @@
 <div class="tab-panel" id="panel-pc">
 
   <div class="info-hero-card" data-watermark="PC">
-    <div class="info-icon" style="background:var(--pc-bg); color:var(--pc);">📋</div>
+    <div class="info-icon" style="background:var(--pc-bg); color:var(--pc);"><i data-lucide='clipboard-list' stroke-width='2.5'></i></div>
     <h2>Prestação de Contas Anual</h2>
     <p class="info-desc">Entrega anual de todos os documentos exigidos pela Resolução TC nº 194/2023 para Empresas Públicas e Sociedades de Economia Mista. São <b>42 itens</b> organizados abaixo por categoria.</p>
 
@@ -819,7 +825,7 @@
     <div class="pc-group" id="pcGrp1">
       <button class="pc-group-toggle" type="button">
         <span class="pc-group-left">
-          <span class="pc-group-icon">📑</span>
+          <span class="pc-group-icon"><i data-lucide='files' stroke-width='2.5'></i></span>
           <span>
             <p class="pc-group-title">Documentos Institucionais e de Responsabilidade</p>
             <p class="pc-group-count">5 itens</p>
@@ -842,7 +848,7 @@
     <div class="pc-group" id="pcGrp2">
       <button class="pc-group-toggle" type="button">
         <span class="pc-group-left">
-          <span class="pc-group-icon">📊</span>
+          <span class="pc-group-icon"><i data-lucide='bar-chart-2' stroke-width='2.5'></i></span>
           <span>
             <p class="pc-group-title">Demonstrações Contábeis e Auditoria</p>
             <p class="pc-group-count">9 itens</p>
@@ -869,7 +875,7 @@
     <div class="pc-group" id="pcGrp3">
       <button class="pc-group-toggle" type="button">
         <span class="pc-group-left">
-          <span class="pc-group-icon">🏦</span>
+          <span class="pc-group-icon"><i data-lucide='building' stroke-width='2.5'></i></span>
           <span>
             <p class="pc-group-title">Controle Patrimonial e Financeiro</p>
             <p class="pc-group-count">6 itens</p>
@@ -893,7 +899,7 @@
     <div class="pc-group" id="pcGrp4">
       <button class="pc-group-toggle" type="button">
         <span class="pc-group-left">
-          <span class="pc-group-icon">📝</span>
+          <span class="pc-group-icon"><i data-lucide='file-signature' stroke-width='2.5'></i></span>
           <span>
             <p class="pc-group-title">Licitações, Contratos e Obras</p>
             <p class="pc-group-count">6 itens</p>
@@ -917,7 +923,7 @@
     <div class="pc-group" id="pcGrp5">
       <button class="pc-group-toggle" type="button">
         <span class="pc-group-left">
-          <span class="pc-group-icon">🤝</span>
+          <span class="pc-group-icon"><i data-lucide='handshake' stroke-width='2.5'></i></span>
           <span>
             <p class="pc-group-title">Transferências, Convênios e Parcerias</p>
             <p class="pc-group-count">8 itens</p>
@@ -943,7 +949,7 @@
     <div class="pc-group" id="pcGrp6">
       <button class="pc-group-toggle" type="button">
         <span class="pc-group-left">
-          <span class="pc-group-icon">⚖️</span>
+          <span class="pc-group-icon"><i data-lucide='scale' stroke-width='2.5'></i></span>
           <span>
             <p class="pc-group-title">Governança, Compliance e Estatais</p>
             <p class="pc-group-count">8 itens</p>
@@ -972,7 +978,7 @@
       <h2>A Compliance vai coordenar a coleta dos documentos</h2>
       <p class="lead">Antes do prazo de <b>15 de maio</b>, a Assessoria de Compliance vai acionar cada setor responsável via SEI para garantir que todos os 42 itens sejam reunidos a tempo.</p>
       <div class="sei-footer-note">
-        <span>ℹ️</span>
+        <span><i data-lucide='info' stroke-width='2.5'></i></span>
         <span>Cada setor será acionado individualmente. O importante é que todos os documentos cheguem <b>consolidados ao TCE-PE até 15 de maio</b> de cada ano.</span>
       </div>
     </div>
@@ -985,7 +991,7 @@
 <div class="tab-panel" id="panel-cadastro">
 
   <div class="info-hero-card" data-watermark="UJ">
-    <div class="info-icon" style="background:var(--cadastro-bg); color:var(--cadastro);">🏛️</div>
+    <div class="info-icon" style="background:var(--cadastro-bg); color:var(--cadastro);"><i data-lucide='landmark' stroke-width='2.5'></i></div>
     <h2>Cadastro das Unidades Jurisdicionadas</h2>
     <p class="info-desc">Atualização anual do cadastro da unidade jurisdicionada junto ao TCE-PE. Deve ser feita no início de cada exercício.</p>
 
@@ -1010,7 +1016,7 @@
       <h2>Você será avisado antes do prazo</h2>
       <p class="lead">A Assessoria de Compliance vai <b>alertar formalmente via SEI</b> o setor DAF antes do prazo de 31 de janeiro para garantir que a atualização cadastral seja feita a tempo.</p>
       <div class="sei-footer-note">
-        <span>ℹ️</span>
+        <span><i data-lucide='info' stroke-width='2.5'></i></span>
         <span>O cadastro deve refletir dados atualizados do exercício corrente. A Compliance acompanha e alerta, mas a responsabilidade é do setor <b>DAF</b>.</span>
       </div>
     </div>
@@ -1023,17 +1029,17 @@
     </div>
     <div class="warnings" style="grid-template-columns:1fr 1fr 1fr;">
       <div class="warn-card">
-        <span class="w-icon">🏢</span>
+        <span class="w-icon"><i data-lucide='building-2' stroke-width='2.5'></i></span>
         <h3>Dados da entidade</h3>
         <p>Nome oficial, CNPJ, endereço, telefone, e-mail e natureza jurídica da unidade jurisdicionada.</p>
       </div>
       <div class="warn-card">
-        <span class="w-icon">👤</span>
+        <span class="w-icon"><i data-lucide='user' stroke-width='2.5'></i></span>
         <h3>Dirigentes</h3>
         <p>Nome, CPF, cargo, data de nomeação e período de gestão dos dirigentes da entidade.</p>
       </div>
       <div class="warn-card">
-        <span class="w-icon">📎</span>
+        <span class="w-icon"><i data-lucide='paperclip' stroke-width='2.5'></i></span>
         <h3>Documentação de suporte</h3>
         <p>Atos de designação, estatuto social vigente e demais documentos exigidos pelo TCE-PE.</p>
       </div>
@@ -1267,5 +1273,7 @@
 })();
 </script>
 
+  <script src='https://unpkg.com/lucide@latest'></script>
+  <script>lucide.createIcons();</script>
 </body>
 </html>
