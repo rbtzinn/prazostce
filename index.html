@@ -10,16 +10,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#F7F4EC;
+    --bg:#F4F7FB;
     --paper:#FFFFFF;
-    --ink:#1C2A24;
-    --ink-soft:#5B6961;
-    --primary:#1F5D4F;
-    --primary-dark:#0F332B;
-    --gold:#B9862E;
-    --gold-bg:#FBF0D9;
-    --line:#E4DFCF;
-    --good:#2A6B4C;
+    --ink:#1A2530;
+    --ink-soft:#5A6A7D;
+    --primary:#005A9C;
+    --primary-dark:#003F6D;
+    --gold:#D08D14;
+    --gold-bg:#FDF5E6;
+    --line:#DDE4EC;
+    --good:#005A9C;
 
     --concurso:#2A4F9E;
     --concurso-bg:#E7ECF9;
@@ -55,7 +55,7 @@
   .hero-inner{max-width:720px; margin:0 auto;}
   .kicker{
     display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace;
-    font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:#EFE6C8;
+    font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:#DCEEFC;
     background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25);
     padding:6px 13px; border-radius:999px; margin-bottom:20px;
   }
@@ -253,9 +253,36 @@
   .cal-legend-dot.dot-temp{background:var(--temporaria);}
   .cal-year-note{text-align:center; font-size:12.5px; color:var(--ink-soft); margin:-8px 0 22px;}
 
-  .calendar-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .deadline-view#viewCalendar {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding: 30px 20px;
+    background: #EBF1F7;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .cal-legend { max-width: 880px; margin: 0 auto 24px; }
+  .cal-year-note { max-width: 880px; margin: -8px auto 24px; }
+  .calendar-grid {
+    max-width: 1200px; margin: 0 auto;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
+  }
+  @media (max-width:960px){.calendar-grid{grid-template-columns:repeat(3,1fr);}}
   @media (max-width:720px){.calendar-grid{grid-template-columns:repeat(2,1fr);}}
   @media (max-width:480px){.calendar-grid{grid-template-columns:1fr;}}
+  
+  .cal-cell .tooltip {
+    position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+    background: var(--ink); color: #fff; padding: 6px 10px; border-radius: 6px;
+    font-size: 11.5px; font-weight: 500; white-space: nowrap; pointer-events: none;
+    opacity: 0; transition: opacity 0.2s, transform 0.2s; z-index: 10; margin-bottom: 5px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); line-height: 1.4; text-align: center;
+  }
+  .cal-cell .tooltip::after {
+    content: ''; position: absolute; top: 100%; left: 50%; margin-left: -4px;
+    border-width: 4px; border-style: solid; border-color: var(--ink) transparent transparent transparent;
+  }
+  .cal-cell:hover .tooltip { opacity: 1; transform: translateX(-50%) translateY(-2px); }
 
   .mini-month{background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:14px 14px 16px;}
   .mini-month-title{
@@ -427,7 +454,7 @@
 <!-- ========== TAB BAR — fora do container, fixa no topo ========== -->
 <nav class="tab-bar" id="tabBar">
   <button class="tab-btn active" data-tab="admissao" type="button"><i class="tab-icon"><i data-lucide='users' stroke-width='2.5'></i></i> Admissão</button>
-  <button class="tab-btn" data-tab="sagres" type="button"><i class="tab-icon"><i data-lucide='bar-chart-2' stroke-width='2.5'></i></i> SAGRES Pessoal</button>
+
   <button class="tab-btn" data-tab="remessa" type="button"><i class="tab-icon"><i data-lucide='send' stroke-width='2.5'></i></i> Remessa TCE</button>
   <button class="tab-btn" data-tab="pc" type="button"><i class="tab-icon"><i data-lucide='clipboard-list' stroke-width='2.5'></i></i> Prestação de Contas</button>
   <button class="tab-btn" data-tab="cadastro" type="button"><i class="tab-icon"><i data-lucide='landmark' stroke-width='2.5'></i></i> Cadastro UJ</button>
@@ -510,18 +537,7 @@
         </button>
         <div class="cat-body">
           <div class="cat-body-inner">
-            <div class="regime-label"><span class="chip">Até jul/2025</span> Resolução TC 194/2023</div>
-            <div class="plain-rule">
-              <span class="when">Se a nomeação foi entre <b>1º de janeiro e 30 de novembro</b></span>
-              <span class="arrow">→</span>
-              <span class="then" style="color:var(--concurso)">Envie de 01 a 15 de dezembro</span>
-            </div>
-            <div class="plain-rule">
-              <span class="when">Se a nomeação foi entre <b>1º e 31 de dezembro</b></span>
-              <span class="arrow">→</span>
-              <span class="then" style="color:var(--concurso)">Envie de 20/01 a 05/02 do ano seguinte</span>
-            </div>
-            <div class="regime-label"><span class="chip">A partir de ago/2025</span> Resolução TC 289/2025</div>
+            
             <div class="plain-rule">
               <span class="when">Se a nomeação foi entre <b>1º de janeiro e 31 de agosto</b></span>
               <span class="arrow">→</span>
@@ -581,18 +597,7 @@
         </button>
         <div class="cat-body">
           <div class="cat-body-inner">
-            <div class="regime-label"><span class="chip">Até jul/2025</span> Resolução TC 194/2023</div>
-            <div class="plain-rule">
-              <span class="when">Se a nomeação foi entre <b>1º de janeiro e 30 de novembro</b></span>
-              <span class="arrow">→</span>
-              <span class="then" style="color:var(--provimento)">Envie de 01 a 15 de dezembro</span>
-            </div>
-            <div class="plain-rule">
-              <span class="when">Se a nomeação foi entre <b>1º e 31 de dezembro</b></span>
-              <span class="arrow">→</span>
-              <span class="then" style="color:var(--provimento)">Envie de 20/01 a 05/02 do ano seguinte</span>
-            </div>
-            <div class="regime-label"><span class="chip">A partir de ago/2025</span> Resolução TC 289/2025</div>
+            
             <div class="plain-rule">
               <span class="when">Se a nomeação foi entre <b>1º de janeiro e 31 de agosto</b></span>
               <span class="arrow">→</span>
@@ -613,32 +618,12 @@
         <span class="cal-legend-item"><span class="cal-legend-dot dot-cp"></span> Concurso Público / Provimento Derivado <span style="color:var(--ink-soft)">(regra vigente desde ago/2025)</span></span>
         <span class="cal-legend-item"><span class="cal-legend-dot dot-temp"></span> Contratação Temporária</span>
       </div>
-      <p class="cal-year-note">Calendário ilustrativo com os dias de 2026 — os mesmos intervalos se repetem todos os anos. Admissões feitas antes de agosto de 2025 seguem a regra antiga (veja a lista ou a seção "O que mudou" abaixo).</p>
+      <p class="cal-year-note">Calendário ilustrativo com os dias de 2026 — os mesmos intervalos se repetem todos os anos.</p>
       <div class="calendar-grid" id="calendarGrid"></div>
     </div>
   </section>
 
-  <section>
-    <div class="section-head">
-      <span class="tag">Por que existem duas regras</span>
-      <h2>O que mudou em agosto de 2025</h2>
-      <p>É como uma troca de trilho: só para Concurso Público e Provimento Derivado. A Contratação Temporária ficou na mesma regra de sempre.</p>
-    </div>
-    <div class="explainer">
-      <div class="explainer-side before">
-        <div class="who">Nomeações até julho de 2025</div>
-        <div class="rule-name">Regra antiga</div>
-        <div class="desc">Resolução TC 194/2023 — envio em <b>dezembro</b> (do mesmo ano) ou <b>janeiro/fevereiro</b> (ano seguinte).</div>
-      </div>
-      <div class="explainer-mid">→</div>
-      <div class="explainer-side after">
-        <div class="who">Nomeações a partir de agosto de 2025</div>
-        <div class="rule-name">Regra nova</div>
-        <div class="desc">Resolução TC 289/2025 — envio em <b>setembro/outubro</b> (do mesmo ano) ou <b>janeiro/fevereiro</b> (ano seguinte).</div>
-      </div>
-    </div>
-    <p class="explainer-note">A calculadora acima já escolhe a regra certa sozinha, de acordo com a data que você informar. <b>A Contratação Temporária não entra nessa mudança.</b></p>
-  </section>
+  
 
   <section>
     <div class="sei-notice">
@@ -659,7 +644,7 @@
         <div class="sei-step">
           <span class="step-num">2</span>
           <h3>Unidade envia ao TCE-PE</h3>
-          <p>A unidade responsável providencia o envio dos dados de admissão pelo SAGRES / e-TCEPE, dentro da janela indicada.</p>
+          <p>A unidade responsável providencia o envio dos dados de admissão pelo módulo de Admissão de Pessoal do e-TCE, dentro da janela indicada.</p>
         </div>
         <div class="sei-step wait">
           <span class="step-num">3</span>
@@ -696,56 +681,12 @@
         <h3>Prazo caiu em fim de semana ou feriado?</h3>
         <p>A data final é prorrogada automaticamente para o primeiro dia útil seguinte. Não precisa fazer nada além de enviar até esse dia.</p>
       </div>
-      <div class="warn-card">
-        <span class="w-icon"><i data-lucide='phone' stroke-width='2.5'></i></span>
-        <h3>Data bem perto da virada de agosto/2025?</h3>
-        <p>Este guia usa agosto de 2025 como referência para a mudança da Resolução TC 289/2025. Em caso de dúvida, confirme com a Assessoria Especial de Controle Interno.</p>
-      </div>
+      
     </div>
   </section>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════════
-     ABA 2 — SAGRES PESSOAL (Módulo de Pessoal — mensal)
-     ══════════════════════════════════════════════════════════════ -->
-<div class="tab-panel" id="panel-sagres">
 
-  <div class="info-hero-card" data-watermark="SAGRES">
-    <div class="info-icon" style="background:var(--sagres-bg); color:var(--sagres);"><i data-lucide='bar-chart-2' stroke-width='2.5'></i></div>
-    <h2>SAGRES — Módulo de Pessoal</h2>
-    <p class="info-desc">Envio mensal das informações de pessoal ao sistema SAGRES do TCE-PE. O envio é obrigatório <b>todo mês</b>, independentemente de haver movimentação.</p>
-
-    <div class="info-detail-row">
-      <div class="info-chip">
-        <span><span class="chip-label">Setor</span><br><span class="chip-value">GGP</span></span>
-      </div>
-      <div class="info-chip">
-        <span><span class="chip-label">Frequência</span><br><span class="chip-value">Mensal</span></span>
-      </div>
-    </div>
-
-    <div class="prazo-badge" style="background:var(--sagres-bg); color:var(--sagres);">
-      <span class="prazo-label">Prazo</span>
-      <span class="prazo-value">Todo mês</span>
-    </div>
-  </div>
-
-  <section>
-    <div class="sei-notice">
-      <span class="sei-badge"><span class="dot"></span> Acompanhamento via SEI</span>
-      <h2>Você será avisado antes de cada prazo</h2>
-      <p class="lead">A Assessoria de Compliance acompanha este envio mensal e vai <b>alertar formalmente via SEI</b> quando o prazo estiver se aproximando. Basta ficar atento ao processo abaixo.</p>
-      <div class="sei-process">
-        <span class="label">Processo SEI</span>
-        <span class="num">nº 00000.000000/0000-00</span>
-      </div>
-      <div class="sei-footer-note">
-        <span><i data-lucide='info' stroke-width='2.5'></i></span>
-        <span>O envio do módulo de pessoal no SAGRES deve ser feito <b>mensalmente</b>. A Compliance vai alertar, mas a responsabilidade do envio é do setor GGP.</span>
-      </div>
-    </div>
-  </section>
-</div>
 
 <!-- ══════════════════════════════════════════════════════════════
      ABA 3 — REMESSA TCE-PE (mensal)
@@ -1099,7 +1040,7 @@
 
   let tipoAtual = 'concurso';
 
-  const CUTOFF = new Date(2025, 7, 1); // 1º de agosto de 2025
+  
 
   function calcular(){
     if(!dataInput.value){ ticketWrap.classList.remove('show'); return; }
@@ -1118,21 +1059,12 @@
         texto = `20 de janeiro a 05 de fevereiro de ${year+1}`;
       }
     } else {
-      if(d >= CUTOFF){
-        regimeTxt = 'Resolução TC 289/2025';
+      regimeTxt = 'Resolução TC 289/2025';
         if(month <= 8){
           texto = `01 de setembro a 31 de outubro de ${year}`;
         } else {
           texto = `01 de janeiro a 28 de fevereiro de ${year+1}`;
         }
-      } else {
-        regimeTxt = 'Resolução TC 194/2023';
-        if(month <= 11){
-          texto = `01 a 15 de dezembro de ${year}`;
-        } else {
-          texto = `20 de janeiro a 05 de fevereiro de ${year+1}`;
-        }
-      }
     }
 
     ticketWindow.textContent = texto;
@@ -1256,9 +1188,27 @@
         if(hasCp) cls += ' has-cp';
         if(hasTemp) cls += ' has-temp';
         let dots = '';
-        if(hasCp) dots += '<span class="dot dot-cp"></span>';
-        if(hasTemp) dots += '<span class="dot dot-temp"></span>';
-        cellsHtml += `<div class="${cls}"><span class="day-num">${day}</span><span class="dots">${dots}</span></div>`;
+        let tooltipLines = [];
+        if(hasCp) {
+          dots += '<span class="dot dot-cp"></span>';
+          if(monthNum <= 10) {
+            tooltipLines.push('Envie se a nomeação foi entre 1º de janeiro e 31 de agosto<br>(Concurso Público / Provimento Derivado)');
+          } else {
+            tooltipLines.push('Envie se a nomeação foi entre 1º de setembro e 31 de dezembro<br>(Concurso Público / Provimento Derivado)');
+          }
+        }
+        if(hasTemp) {
+          dots += '<span class="dot dot-temp"></span>';
+          if(monthNum === 5) {
+            tooltipLines.push('Envie se a contratação foi entre 1º de janeiro e 30 de abril<br>(Contratação Temporária)');
+          } else if(monthNum === 9) {
+            tooltipLines.push('Envie se a contratação foi entre 1º de maio e 31 de agosto<br>(Contratação Temporária)');
+          } else {
+            tooltipLines.push('Envie se a contratação foi entre 1º de setembro e 31 de dezembro<br>(Contratação Temporária)');
+          }
+        }
+        let tooltipHtml = tooltipLines.length > 0 ? `<div class="tooltip">${tooltipLines.join('<hr style="margin:4px 0;border:none;border-top:1px solid rgba(255,255,255,0.2);">')}</div>` : '';
+        cellsHtml += `<div class="${cls}"><span class="day-num">${day}</span><span class="dots">${dots}</span>${tooltipHtml}</div>`;
       }
 
       html += `
