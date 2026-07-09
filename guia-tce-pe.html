@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mural de Obrigações TCE-PE — SUAPE</title>
+<meta name="description" content="Mural informativo com todos os prazos e obrigações do TCE-PE para SUAPE. Consulta rápida e fácil.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7F4EC;
+    --paper:#FFFFFF;
+    --ink:#1C2A24;
+    --ink-soft:#5B6961;
+    --primary:#1F5D4F;
+    --primary-dark:#0F332B;
+    --gold:#B9862E;
+    --gold-bg:#FBF0D9;
+    --line:#E4DFCF;
+    --good:#2A6B4C;
+
+    --concurso:#2A4F9E;
+    --concurso-bg:#E7ECF9;
+    --temporaria:#A15A16;
+    --temporaria-bg:#FBEDDC;
+    --provimento:#6E3B96;
+    --provimento-bg:#F1E7F7;
+
+    --sagres:#2E7D9B;
+    --sagres-bg:#E3F2F9;
+    --remessa:#6B5B95;
+    --remessa-bg:#EDEBF4;
+    --pc:#C0392B;
+    --pc-bg:#FBEAEA;
+    --cadastro:#27AE60;
+    --cadastro-bg:#E8F8EE;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Inter',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px; margin:0 auto; padding:0 20px 100px;}
+  h1,h2,h3{font-family:'Fraunces',serif;}
+  strong{color:var(--primary-dark);}
+
+  /* HERO */
+  header.hero{
+    background:linear-gradient(160deg,var(--primary-dark) 0%, var(--primary) 85%);
+    color:#F5F2E7; padding:48px 20px 56px; text-align:center;
+  }
+  .hero-inner{max-width:720px; margin:0 auto;}
+  .kicker{
+    display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace;
+    font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:#EFE6C8;
+    background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25);
+    padding:6px 13px; border-radius:999px; margin-bottom:20px;
+  }
+  h1{font-size:clamp(26px,4.4vw,36px); font-weight:700; line-height:1.2; margin:0 0 14px;}
+  .hero-sub{font-size:16px; color:#DCE6DF; margin:0; max-width:600px; margin:0 auto;}
+
+  /* ========== TAB BAR ========== */
+  .tab-bar{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,255,255,.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+    padding:0 20px;
+    display:flex; justify-content:center; gap:4px;
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+  }
+  .tab-bar::-webkit-scrollbar{display:none;}
+  .tab-btn{
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:700; letter-spacing:.03em;
+    text-transform:uppercase; padding:14px 18px 12px; border:none; background:none;
+    color:var(--ink-soft); cursor:pointer; white-space:nowrap;
+    border-bottom:3px solid transparent; transition:color .15s, border-color .15s;
+    display:inline-flex; align-items:center; gap:7px;
+  }
+  .tab-btn:hover{color:var(--primary);}
+  .tab-btn.active{color:var(--primary-dark); border-bottom-color:var(--primary);}
+  .tab-btn .tab-icon{font-style:normal; font-size:15px;}
+
+  /* TAB PANELS */
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block; animation:fadeInPanel .3s ease;}
+  @keyframes fadeInPanel{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+
+  /* WIZARD (signature) */
+  .wizard{
+    margin-top:28px; background:var(--paper); border-radius:24px; border:1px solid var(--line);
+    box-shadow:0 30px 60px -34px rgba(15,51,43,.4); padding:32px; position:relative; z-index:2;
+  }
+  .wizard-step-label{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink-soft); display:flex; align-items:center; gap:8px; margin-bottom:14px;
+  }
+  .wizard-step-label .num{
+    width:20px; height:20px; border-radius:50%; background:var(--primary); color:#fff;
+    display:inline-flex; align-items:center; justify-content:center; font-size:11px; font-weight:700;
+  }
+  .wizard h2{font-size:20px; font-weight:700; margin:0 0 4px; color:var(--primary-dark);}
+  .wizard > p.lead{margin:0 0 26px; color:var(--ink-soft); font-size:15px;}
+
+  .type-choices{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:30px;}
+  @media (max-width:620px){.type-choices{grid-template-columns:1fr;}}
+  .type-btn{
+    border:1.5px solid var(--line); background:#FBFBF7; border-radius:16px; padding:16px 14px;
+    cursor:pointer; text-align:left; font-family:'Inter',sans-serif; transition:.15s;
+  }
+  .type-btn .icon{
+    width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center;
+    font-size:17px; margin-bottom:10px;
+  }
+  .type-btn .name{font-weight:700; font-size:14.5px; color:var(--ink); display:block; margin-bottom:3px;}
+  .type-btn .hint{font-size:12.5px; color:var(--ink-soft); display:block;}
+  .type-btn[data-type="concurso"] .icon{background:var(--concurso-bg); color:var(--concurso);}
+  .type-btn[data-type="temporaria"] .icon{background:var(--temporaria-bg); color:var(--temporaria);}
+  .type-btn[data-type="provimento"] .icon{background:var(--provimento-bg); color:var(--provimento);}
+  .type-btn.active{border-color:currentColor; box-shadow:0 0 0 3px rgba(0,0,0,0.04);}
+  .type-btn[data-type="concurso"].active{border-color:var(--concurso); background:#F5F7FD;}
+  .type-btn[data-type="temporaria"].active{border-color:var(--temporaria); background:#FFF8EF;}
+  .type-btn[data-type="provimento"].active{border-color:var(--provimento); background:#FAF5FC;}
+
+  .date-row{display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap;}
+  .date-field{flex:1; min-width:220px;}
+  .date-field label{display:block; font-size:13px; font-weight:700; color:var(--primary-dark); margin-bottom:8px;}
+  input[type=date]{
+    width:100%; padding:14px 15px; border-radius:12px; border:1.5px solid var(--line);
+    font-family:'Inter',sans-serif; font-size:16px; color:var(--ink); background:#FBFBF7;
+  }
+  input[type=date]:focus{outline:2px solid var(--gold); outline-offset:1px; border-color:var(--gold);}
+
+  /* TICKET RESULT — signature element */
+  .ticket-wrap{margin-top:28px; display:none;}
+  .ticket-wrap.show{display:block;}
+  .ticket{
+    display:flex; border-radius:18px; overflow:hidden; border:1.5px solid var(--line);
+    background:#fff;
+  }
+  @media (max-width:560px){.ticket{flex-direction:column;}}
+  .ticket-main{flex:1; padding:22px 24px;}
+  .ticket-stub{
+    flex:0 0 168px; padding:22px 18px; display:flex; flex-direction:column; align-items:center;
+    justify-content:center; text-align:center; border-left:2px dashed var(--line); position:relative;
+  }
+  @media (max-width:560px){.ticket-stub{flex:0 0 auto; border-left:none; border-top:2px dashed var(--line); flex-direction:row; gap:10px; padding:16px;}}
+  .ticket-stub::before, .ticket-stub::after{
+    content:""; position:absolute; width:18px; height:18px; border-radius:50%; background:var(--bg);
+  }
+  .ticket-stub::before{top:-9px; left:-9px;}
+  .ticket-stub::after{bottom:-9px; left:-9px;}
+  @media (max-width:560px){.ticket-stub::before{top:-9px; left:-9px;} .ticket-stub::after{top:-9px; right:-9px; bottom:auto; left:auto;}}
+
+  .ticket-eyebrow{font-family:'IBM Plex Mono',monospace; font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin-bottom:8px;}
+  .ticket-window{font-family:'IBM Plex Mono',monospace; font-size:24px; font-weight:700; color:var(--ink); display:block; margin-bottom:10px; line-height:1.3;}
+  .ticket-regime{display:inline-block; font-size:12px; font-weight:700; padding:4px 11px; border-radius:999px; background:var(--gold-bg); color:#8A6519;}
+  .ticket-note{display:block; margin-top:12px; font-size:13px; color:var(--ink-soft);}
+  .ticket-stub .big-icon{font-size:28px; font-family:'Fraunces',serif; font-weight:900;}
+  .ticket-stub .stub-label{font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin-top:6px; font-weight:700;}
+
+  /* SECTIONS */
+  section{margin-top:52px;}
+  .section-head{margin-bottom:22px; text-align:center;}
+  .section-head .tag{font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); display:block; margin-bottom:8px;}
+  .section-head h2{font-size:24px; font-weight:700; margin:0 0 10px; color:var(--primary-dark);}
+  .section-head p{margin:0 auto; color:var(--ink-soft); font-size:15px; max-width:560px;}
+
+  /* VIEW TOGGLE (Lista / Calendário) */
+  .view-toggle{
+    display:flex; justify-content:center; gap:8px; margin-bottom:26px;
+  }
+  .view-toggle-btn{
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:700; letter-spacing:.03em;
+    text-transform:uppercase; padding:10px 20px; border-radius:999px; border:1.5px solid var(--line);
+    background:var(--paper); color:var(--ink-soft); cursor:pointer; transition:.15s;
+    display:inline-flex; align-items:center; gap:7px;
+  }
+  .view-toggle-btn:hover{border-color:var(--primary);}
+  .view-toggle-btn.active{background:var(--primary-dark); border-color:var(--primary-dark); color:#F5F2E7;}
+
+  .deadline-view{display:none;}
+  .deadline-view.show{display:block;}
+
+  /* SIMPLE EXPLAINER OF THE RULE CHANGE */
+  .explainer{
+    background:var(--paper); border:1px solid var(--line); border-radius:22px; padding:8px;
+    display:grid; grid-template-columns:1fr auto 1fr; align-items:stretch; gap:0;
+  }
+  @media (max-width:600px){.explainer{grid-template-columns:1fr;}}
+  .explainer-side{padding:22px 22px; border-radius:16px;}
+  .explainer-side.before{background:#F4F3EC;}
+  .explainer-side.after{background:#EFF6F2;}
+  .explainer-side .who{font-size:12px; text-transform:uppercase; letter-spacing:.06em; font-weight:700; color:var(--ink-soft); margin-bottom:10px;}
+  .explainer-side .rule-name{font-family:'Fraunces',serif; font-weight:700; font-size:16.5px; margin-bottom:8px;}
+  .explainer-side.before .rule-name{color:#8A8272;}
+  .explainer-side.after .rule-name{color:var(--good);}
+  .explainer-side .desc{font-size:13.5px; color:var(--ink-soft);}
+  .explainer-mid{display:flex; align-items:center; justify-content:center; padding:10px 6px; color:var(--gold); font-size:20px;}
+  @media (max-width:600px){.explainer-mid{transform:rotate(90deg); padding:2px;}}
+  .explainer-note{text-align:center; margin-top:14px; font-size:13.5px; color:var(--ink-soft);}
+  .explainer-note b{color:var(--ink);}
+
+  /* CATEGORY CARDS (accordion) */
+  .category{
+    background:var(--paper); border:1px solid var(--line); border-radius:20px; margin-bottom:16px; overflow:hidden;
+  }
+  .cat-toggle{
+    width:100%; display:flex; align-items:center; justify-content:space-between; gap:14px;
+    padding:20px 22px; background:none; border:none; cursor:pointer; text-align:left; font-family:'Inter',sans-serif;
+  }
+  .cat-toggle-left{display:flex; align-items:center; gap:14px;}
+  .cat-icon{width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:19px; flex:0 0 auto;}
+  .category[data-type="concurso"] .cat-icon{background:var(--concurso-bg); color:var(--concurso);}
+  .category[data-type="temporaria"] .cat-icon{background:var(--temporaria-bg); color:var(--temporaria);}
+  .category[data-type="provimento"] .cat-icon{background:var(--provimento-bg); color:var(--provimento);}
+  .cat-title{font-weight:700; font-size:17px; color:var(--ink); margin:0 0 2px;}
+  .cat-sub{font-size:13px; color:var(--ink-soft); margin:0;}
+  .chevron{font-size:18px; color:var(--ink-soft); transition:transform .2s; flex:0 0 auto;}
+  .category.open .chevron{transform:rotate(180deg);}
+
+  .cat-body{max-height:0; overflow:hidden; transition:max-height .25s ease;}
+  .cat-body-inner{padding:0 22px 22px;}
+
+  .regime-label{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--ink-soft); margin:16px 0 10px; display:flex; align-items:center; gap:8px;
+  }
+  .regime-label:first-of-type{margin-top:4px;}
+  .regime-label .chip{background:var(--bg); border:1px solid var(--line); padding:3px 9px; border-radius:999px; font-weight:700;}
+
+  .plain-rule{
+    display:flex; align-items:center; gap:14px; border:1px solid var(--line); border-radius:14px;
+    padding:14px 16px; background:#FBFBF7; margin-bottom:10px;
+  }
+  .plain-rule:last-child{margin-bottom:0;}
+  .plain-rule .when{flex:1; font-size:14px; color:var(--ink);}
+  .plain-rule .when b{color:var(--primary-dark);}
+  .plain-rule .arrow{color:var(--ink-soft); font-size:16px;}
+  .plain-rule .then{font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:13.5px; text-align:right; flex:0 0 auto;}
+  @media (max-width:560px){.plain-rule{flex-direction:column; align-items:flex-start; gap:6px;} .plain-rule .then{text-align:left;}}
+
+  /* CALENDAR VIEW */
+  .cal-legend{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:10px 22px; margin-bottom:24px;
+    background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:16px 20px;
+  }
+  .cal-legend-item{display:flex; align-items:center; gap:9px; font-size:13px; color:var(--ink);}
+  .cal-legend-dot{width:11px; height:11px; border-radius:50%; flex:0 0 auto;}
+  .cal-legend-dot.dot-cp{background:linear-gradient(135deg, var(--concurso) 0 50%, var(--provimento) 50% 100%);}
+  .cal-legend-dot.dot-temp{background:var(--temporaria);}
+  .cal-year-note{text-align:center; font-size:12.5px; color:var(--ink-soft); margin:-8px 0 22px;}
+
+  .calendar-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media (max-width:720px){.calendar-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:480px){.calendar-grid{grid-template-columns:1fr;}}
+
+  .mini-month{background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:14px 14px 16px;}
+  .mini-month-title{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:700; text-transform:uppercase;
+    letter-spacing:.05em; color:var(--primary-dark); margin-bottom:10px; text-align:center;
+  }
+  .mini-month-weekdays{display:grid; grid-template-columns:repeat(7,1fr); margin-bottom:4px;}
+  .mini-month-weekdays span{
+    font-size:10px; text-align:center; color:var(--ink-soft); font-weight:700;
+  }
+  .mini-month-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:2px;}
+  .cal-cell{
+    aspect-ratio:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    border-radius:6px; position:relative;
+  }
+  .cal-cell.empty{visibility:hidden;}
+  .cal-cell .day-num{font-size:10.5px; color:var(--ink); line-height:1;}
+  .cal-cell .dots{display:flex; gap:2px; margin-top:2px; height:5px;}
+  .cal-cell .dot{width:4.5px; height:4.5px; border-radius:50%;}
+  .cal-cell .dot-cp{background:linear-gradient(135deg, var(--concurso) 0 50%, var(--provimento) 50% 100%);}
+  .cal-cell .dot-temp{background:var(--temporaria);}
+  .cal-cell.has-cp{background:var(--concurso-bg);}
+  .cal-cell.has-temp{background:var(--temporaria-bg);}
+  .cal-cell.has-cp.has-temp{background:linear-gradient(135deg, var(--concurso-bg) 0 50%, var(--temporaria-bg) 50% 100%);}
+
+  /* WARNINGS - plain */
+  .warnings{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  @media (max-width:620px){.warnings{grid-template-columns:1fr;}}
+  .warn-card{background:var(--gold-bg); border:1px solid #E8D6A8; border-radius:18px; padding:20px 20px;}
+  .warn-card .w-icon{font-size:20px; margin-bottom:10px; display:block;}
+  .warn-card h3{font-size:15.5px; font-weight:700; margin:0 0 8px; color:var(--primary-dark); font-family:'Fraunces',serif;}
+  .warn-card p{margin:0; font-size:13.5px; color:var(--ink); line-height:1.55;}
+
+  /* AVISO SEI — acompanhamento formal */
+  .sei-notice{
+    background:linear-gradient(180deg,#FFFFFF 0%, #FBF8EF 100%);
+    border:1.5px solid #E8D6A8; border-radius:22px; padding:30px 30px 26px; position:relative; overflow:hidden;
+  }
+  .sei-notice::before{
+    content:"SEI"; position:absolute; top:-18px; right:-6px; font-family:'Fraunces',serif; font-weight:900;
+    font-size:110px; color:rgba(185,134,46,0.07); line-height:1; pointer-events:none;
+  }
+  .sei-badge{
+    display:inline-flex; align-items:center; gap:8px; background:var(--gold-bg); color:#8A6519;
+    font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.04em;
+    padding:6px 13px; border-radius:999px; margin-bottom:16px;
+  }
+  .sei-badge .dot{width:6px; height:6px; border-radius:50%; background:var(--gold);}
+  .sei-notice h2{font-size:21px; font-weight:700; margin:0 0 12px; color:var(--primary-dark); position:relative;}
+  .sei-notice p.lead{margin:0 0 6px; font-size:15px; color:var(--ink); max-width:640px; position:relative;}
+  .sei-process{
+    display:inline-flex; align-items:center; gap:10px; margin:14px 0 24px; background:var(--paper);
+    border:1.5px dashed var(--gold); border-radius:12px; padding:10px 16px; position:relative;
+  }
+  .sei-process .label{font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); font-weight:700;}
+  .sei-process .num{font-family:'IBM Plex Mono',monospace; font-size:15.5px; font-weight:700; color:var(--primary-dark);}
+
+  .sei-steps{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; position:relative;}
+  @media (max-width:680px){.sei-steps{grid-template-columns:1fr;}}
+  .sei-step{
+    background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:18px 18px 16px;
+  }
+  .sei-step .step-num{
+    width:26px; height:26px; border-radius:50%; background:var(--primary); color:#fff; font-size:12px; font-weight:700;
+    display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; margin-bottom:12px;
+  }
+  .sei-step h3{font-size:14.5px; font-weight:700; margin:0 0 6px; color:var(--ink); font-family:'Fraunces',serif;}
+  .sei-step p{margin:0; font-size:13px; color:var(--ink-soft);}
+  .sei-step.wait .step-num{background:var(--gold);}
+
+  .sei-footer-note{
+    display:flex; align-items:flex-start; gap:10px; margin-top:22px; padding-top:20px; border-top:1px dashed var(--line);
+    font-size:13px; color:var(--ink-soft); position:relative;
+  }
+  .sei-footer-note b{color:var(--ink);}
+
+  /* ===== INFO CARD — used across tabs ===== */
+  .info-hero-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:24px;
+    box-shadow:0 30px 60px -34px rgba(15,51,43,.4); padding:36px 32px; margin-top:28px;
+    text-align:center; position:relative; overflow:hidden;
+  }
+  .info-hero-card::after{
+    content:attr(data-watermark); position:absolute; top:-10px; right:-10px;
+    font-family:'Fraunces',serif; font-weight:900; font-size:120px;
+    color:rgba(0,0,0,.03); line-height:1; pointer-events:none;
+  }
+  .info-hero-card .info-icon{
+    width:64px; height:64px; border-radius:18px; display:inline-flex; align-items:center;
+    justify-content:center; font-size:28px; margin-bottom:18px;
+  }
+  .info-hero-card h2{font-size:22px; font-weight:700; margin:0 0 8px; color:var(--primary-dark);}
+  .info-hero-card .info-desc{font-size:15px; color:var(--ink-soft); margin:0 auto 24px; max-width:520px;}
+
+  .info-detail-row{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin-bottom:24px;
+  }
+  .info-chip{
+    display:inline-flex; align-items:center; gap:8px; padding:10px 18px;
+    background:var(--bg); border:1px solid var(--line); border-radius:14px;
+    font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600;
+  }
+  .info-chip .chip-label{color:var(--ink-soft); font-size:11px; text-transform:uppercase; letter-spacing:.05em;}
+  .info-chip .chip-value{color:var(--primary-dark); font-weight:700;}
+
+  .prazo-badge{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 28px; border-radius:16px; font-family:'IBM Plex Mono',monospace;
+    font-size:18px; font-weight:700;
+  }
+  .prazo-badge .prazo-label{font-size:12px; text-transform:uppercase; letter-spacing:.06em; font-weight:600; opacity:.7;}
+  .prazo-badge .prazo-value{font-size:22px;}
+
+  /* PC doc list */
+  .pc-group{
+    background:var(--paper); border:1px solid var(--line); border-radius:20px;
+    margin-bottom:16px; overflow:hidden;
+  }
+  .pc-group-toggle{
+    width:100%; display:flex; align-items:center; justify-content:space-between; gap:14px;
+    padding:18px 22px; background:none; border:none; cursor:pointer; text-align:left;
+    font-family:'Inter',sans-serif;
+  }
+  .pc-group-left{display:flex; align-items:center; gap:12px;}
+  .pc-group-icon{
+    width:38px; height:38px; border-radius:10px; display:flex; align-items:center;
+    justify-content:center; font-size:17px; flex:0 0 auto; background:var(--bg);
+  }
+  .pc-group-title{font-weight:700; font-size:15.5px; color:var(--ink); margin:0 0 2px;}
+  .pc-group-count{font-size:12px; color:var(--ink-soft); margin:0;}
+  .pc-group .chevron{font-size:18px; color:var(--ink-soft); transition:transform .2s; flex:0 0 auto;}
+  .pc-group.open .chevron{transform:rotate(180deg);}
+  .pc-group-body{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .pc-group-body-inner{padding:0 22px 20px;}
+
+  .pc-item{
+    display:flex; align-items:flex-start; gap:12px; padding:12px 14px;
+    border:1px solid var(--line); border-radius:12px; background:#FBFBF7;
+    margin-bottom:8px; font-size:13.5px; color:var(--ink); line-height:1.5;
+  }
+  .pc-item:last-child{margin-bottom:0;}
+  .pc-item-num{
+    flex:0 0 auto; width:24px; height:24px; border-radius:6px; background:var(--bg);
+    border:1px solid var(--line); display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:700; color:var(--ink-soft);
+    margin-top:1px;
+  }
+  .pc-item-text{flex:1;}
+
+  footer{text-align:center; color:var(--ink-soft); font-size:12px; margin-top:50px; padding-top:22px; border-top:1px solid var(--line);}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="kicker">Mural informativo · SUAPE</span>
+    <h1>Obrigações junto ao TCE-PE</h1>
+    <p class="hero-sub">Consulte os prazos de cada obrigação. A Assessoria de Compliance vai avisar via SEI quando cada prazo estiver chegando.</p>
+  </div>
+</header>
+
+<!-- ========== TAB BAR — fora do container, fixa no topo ========== -->
+<nav class="tab-bar" id="tabBar">
+  <button class="tab-btn active" data-tab="admissao" type="button"><i class="tab-icon">👥</i> Admissão</button>
+  <button class="tab-btn" data-tab="sagres" type="button"><i class="tab-icon">📊</i> SAGRES Pessoal</button>
+  <button class="tab-btn" data-tab="remessa" type="button"><i class="tab-icon">📤</i> Remessa TCE</button>
+  <button class="tab-btn" data-tab="pc" type="button"><i class="tab-icon">📋</i> Prestação de Contas</button>
+  <button class="tab-btn" data-tab="cadastro" type="button"><i class="tab-icon">🏛️</i> Cadastro UJ</button>
+</nav>
+
+<div class="wrap">
+
+<!-- ══════════════════════════════════════════════════════════════
+     ABA 1 — ADMISSÃO DE PESSOAL (conteúdo original mantido)
+     ══════════════════════════════════════════════════════════════ -->
+<div class="tab-panel active" id="panel-admissao">
+
+  <div class="wizard">
+    <div class="wizard-step-label"><span class="num">1</span> Qual foi o tipo de admissão?</div>
+    <div class="type-choices" id="tipoChoices">
+      <button class="type-btn active" data-type="concurso" type="button">
+        <span class="icon">🎓</span>
+        <span class="name">Concurso Público</span>
+        <span class="hint">Nomeação de aprovado em concurso</span>
+      </button>
+      <button class="type-btn" data-type="temporaria" type="button">
+        <span class="icon">📋</span>
+        <span class="name">Contratação Temporária</span>
+        <span class="hint">Contrato por prazo determinado</span>
+      </button>
+      <button class="type-btn" data-type="provimento" type="button">
+        <span class="icon">📈</span>
+        <span class="name">Provimento Derivado</span>
+        <span class="hint">Promoção, progressão etc.</span>
+      </button>
+    </div>
+
+    <div class="wizard-step-label"><span class="num">2</span> Em que data isso aconteceu?</div>
+    <div class="date-row">
+      <div class="date-field">
+        <label for="dataInput">Data da admissão / nomeação / contratação</label>
+        <input type="date" id="dataInput">
+      </div>
+    </div>
+
+    <div class="ticket-wrap" id="ticketWrap">
+      <div class="ticket">
+        <div class="ticket-main">
+          <span class="ticket-eyebrow">Envie ao TCE-PE entre</span>
+          <span class="ticket-window" id="ticketWindow">—</span>
+          <span class="ticket-regime" id="ticketRegime">—</span>
+          <span class="ticket-note" id="ticketNote">Se a data final cair em fim de semana ou feriado, o prazo passa automaticamente para o próximo dia útil.</span>
+        </div>
+        <div class="ticket-stub" id="ticketStub">
+          <span class="big-icon">✓</span>
+          <span class="stub-label">prazo<br>calculado</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="prazos-section">
+    <div class="section-head">
+      <span class="tag">Consulta detalhada</span>
+      <h2>Veja o prazo de cada tipo, por escrito</h2>
+      <p>Escolha como prefere consultar: em texto, tipo por tipo, ou visualizado num calendário de dias.</p>
+    </div>
+
+    <div class="view-toggle">
+      <button class="view-toggle-btn active" data-view="list" type="button">📄 Lista</button>
+      <button class="view-toggle-btn" data-view="calendar" type="button">🗓️ Calendário</button>
+    </div>
+
+    <div class="deadline-view show" id="viewList">
+      <div class="category" data-type="concurso">
+        <button class="cat-toggle" type="button">
+          <span class="cat-toggle-left">
+            <span class="cat-icon">🎓</span>
+            <span>
+              <p class="cat-title">Concurso Público</p>
+              <p class="cat-sub">Nomeação de candidatos aprovados</p>
+            </span>
+          </span>
+          <span class="chevron">⌄</span>
+        </button>
+        <div class="cat-body">
+          <div class="cat-body-inner">
+            <div class="regime-label"><span class="chip">Até jul/2025</span> Resolução TC 194/2023</div>
+            <div class="plain-rule">
+              <span class="when">Se a nomeação foi entre <b>1º de janeiro e 30 de novembro</b></span>
+              <span class="arrow">→</span>
+              <span class="then" style="color:var(--concurso)">Envie de 01 a 15 de dezembro</span>
+            </div>
+            <div class="plain-rule">
+              <span class="when">Se a nomeação foi entre <b>1º e 31 de dezembro</b></span>
+              <span class="arrow">→</span>
+              <span class="then" style="color:var(--concurso)">Envie de 20/01 a 05/02 do ano seguinte</span>
+            </div>
+            <div class="regime-label"><span class="chip">A partir de ago/2025</span> Resolução TC 289/2025</div>
+            <div class="plain-rule">
+              <span class="when">Se a nomeação foi entre <b>1º de janeiro e 31 de agosto</b></span>
+              <span class="arrow">→</span>
+              <span class="then" style="color:var(--concurso)">Envie de 01/09 a 31/10 do mesmo ano</span>
+            </div>
+            <div class="plain-rule">
+              <span class="when">Se a nomeação foi entre <b>1º de setembro e 31 de dezembro</b></span>
+              <span class="arrow">→</span>
+              <span class="then" style="color:var(--concurso)">Envie de 01/01 a 28/02 do ano seguinte</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="category" data-type="temporaria">
+        <button class="cat-toggle" type="button">
+          <span class="cat-toggle-left">
+            <span class="cat-icon">📋</span>
+            <span>
+              <p class="cat-title">Contratação Temporária</p>
+              <p class="cat-sub">Regra única — não mudou em 2025</p>
+            </span>
+          </span>
+          <span class="chevron">⌄</span>
+        </button>
+        <div class="cat-body">
+          <div class="cat-body-inner">
+            <div class="plain-rule">
+              <span class="when">Se a contratação foi entre <b>1º de janeiro e 30 de abril</b></span>
+              <span class="arrow">→</span>
+              <span class="then" style="color:var(--temporaria)">Envie de 01 a 15 de maio</span>
+            </div>
+            <div class="plain-rule">
+              <span class="when">Se a contratação foi entre <b>1º de maio e 31 de agosto</b></span>
+              <span class="arrow">→</span>
+              <span class="then" style="color:var(--temporaria)">Envie de 01 a 15 de setembro</span>
+            </div>
+            <div class="plain-rule">
+              <span class="when">Se a contratação foi entre <b>1º de setembro e 31 de dezembro</b></span>
+              <span class="arrow">→</span>
+              <span class="then" style="color:var(--temporaria)">Envie de 20/01 a 05/02 do ano seguinte</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="category" data-type="provimento">
+        <button class="cat-toggle" type="button">
+          <span class="cat-toggle-left">
+            <span class="cat-icon">📈</span>
+            <span>
+              <p class="cat-title">Provimento Derivado</p>
+              <p class="cat-sub">Promoções, progressões e afins</p>
+            </span>
+          </span>
+          <span class="chevron">⌄</span>
+        </button>
+        <div class="cat-body">
+          <div class="cat-body-inner">
+            <div class="regime-label"><span class="chip">Até jul/2025</span> Resolução TC 194/2023</div>
+            <div class="plain-rule">
+              <span class="when">Se a nomeação foi entre <b>1º de janeiro e 30 de novembro</b></span>
+              <span class="arrow">→</span>
+              <span class="then" style="color:var(--provimento)">Envie de 01 a 15 de dezembro</span>
+            </div>
+            <div class="plain-rule">
+              <span class="when">Se a nomeação foi entre <b>1º e 31 de dezembro</b></span>
+              <span class="arrow">→</span>
+              <span class="then" style="color:var(--provimento)">Envie de 20/01 a 05/02 do ano seguinte</span>
+            </div>
+            <div class="regime-label"><span class="chip">A partir de ago/2025</span> Resolução TC 289/2025</div>
+            <div class="plain-rule">
+              <span class="when">Se a nomeação foi entre <b>1º de janeiro e 31 de agosto</b></span>
+              <span class="arrow">→</span>
+              <span class="then" style="color:var(--provimento)">Envie de 01/09 a 31/10 do mesmo ano</span>
+            </div>
+            <div class="plain-rule">
+              <span class="when">Se a nomeação foi entre <b>1º de setembro e 31 de dezembro</b></span>
+              <span class="arrow">→</span>
+              <span class="then" style="color:var(--provimento)">Envie de 01/01 a 28/02 do ano seguinte</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="deadline-view" id="viewCalendar">
+      <div class="cal-legend">
+        <span class="cal-legend-item"><span class="cal-legend-dot dot-cp"></span> Concurso Público / Provimento Derivado <span style="color:var(--ink-soft)">(regra vigente desde ago/2025)</span></span>
+        <span class="cal-legend-item"><span class="cal-legend-dot dot-temp"></span> Contratação Temporária</span>
+      </div>
+      <p class="cal-year-note">Calendário ilustrativo com os dias de 2026 — os mesmos intervalos se repetem todos os anos. Admissões feitas antes de agosto de 2025 seguem a regra antiga (veja a lista ou a seção "O que mudou" abaixo).</p>
+      <div class="calendar-grid" id="calendarGrid"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="tag">Por que existem duas regras</span>
+      <h2>O que mudou em agosto de 2025</h2>
+      <p>É como uma troca de trilho: só para Concurso Público e Provimento Derivado. A Contratação Temporária ficou na mesma regra de sempre.</p>
+    </div>
+    <div class="explainer">
+      <div class="explainer-side before">
+        <div class="who">Nomeações até julho de 2025</div>
+        <div class="rule-name">Regra antiga</div>
+        <div class="desc">Resolução TC 194/2023 — envio em <b>dezembro</b> (do mesmo ano) ou <b>janeiro/fevereiro</b> (ano seguinte).</div>
+      </div>
+      <div class="explainer-mid">→</div>
+      <div class="explainer-side after">
+        <div class="who">Nomeações a partir de agosto de 2025</div>
+        <div class="rule-name">Regra nova</div>
+        <div class="desc">Resolução TC 289/2025 — envio em <b>setembro/outubro</b> (do mesmo ano) ou <b>janeiro/fevereiro</b> (ano seguinte).</div>
+      </div>
+    </div>
+    <p class="explainer-note">A calculadora acima já escolhe a regra certa sozinha, de acordo com a data que você informar. <b>A Contratação Temporária não entra nessa mudança.</b></p>
+  </section>
+
+  <section>
+    <div class="sei-notice">
+      <span class="sei-badge"><span class="dot"></span> Acompanhamento formal</span>
+      <h2>A Assessoria de Compliance vai avisar antes do prazo vencer</h2>
+      <p class="lead">Para que nenhum envio fique para trás, a Assessoria de Compliance vai <b>alertar formalmente cada unidade</b>, dentro do processo SEI abaixo, sempre que um prazo de admissão de pessoal estiver se aproximando.</p>
+      <div class="sei-process">
+        <span class="label">Processo SEI</span>
+        <span class="num">nº 0060300006.001060/2023-96</span>
+      </div>
+
+      <div class="sei-steps">
+        <div class="sei-step">
+          <span class="step-num">1</span>
+          <h3>Alerta é lançado no SEI</h3>
+          <p>Perto de cada janela de envio, a Assessoria de Compliance inclui um despacho no processo lembrando a unidade do prazo e do que precisa ser enviado.</p>
+        </div>
+        <div class="sei-step">
+          <span class="step-num">2</span>
+          <h3>Unidade envia ao TCE-PE</h3>
+          <p>A unidade responsável providencia o envio dos dados de admissão pelo SAGRES / e-TCEPE, dentro da janela indicada.</p>
+        </div>
+        <div class="sei-step wait">
+          <span class="step-num">3</span>
+          <h3>Unidade confirma no SEI</h3>
+          <p>Depois de enviar, a unidade responde no mesmo processo SEI confirmando: <b>"Enviado ao TCE-PE, dentro do prazo."</b></p>
+        </div>
+      </div>
+
+      <div class="sei-footer-note">
+        <span>ℹ️</span>
+        <span>Isso vale para os três tipos de admissão — <b>Concurso Público</b>, <b>Contratação Temporária</b> e <b>Provimento Derivado</b>. O objetivo é ter, formalizado no SEI, a confirmação de que cada remessa foi de fato feita.</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="tag">Não esqueça</span>
+      <h2>Regras que valem para todos os tipos</h2>
+    </div>
+    <div class="warnings">
+      <div class="warn-card">
+        <span class="w-icon">📨</span>
+        <h3>Envie a seleção antes da admissão</h3>
+        <p>Os dados do processo seletivo (edital, homologação) vão para o TCE-PE <b>antes</b> das remessas de admissão: os dados iniciais na data de publicação do edital, e os dados do resultado final em até <b>5 dias</b> após a homologação.</p>
+      </div>
+      <div class="warn-card">
+        <span class="w-icon">🗒️</span>
+        <h3>Ninguém foi admitido no período?</h3>
+        <p>Mesmo assim, registre a certidão negativa no sistema dentro do mesmo prazo, para o processo não ficar pendente.</p>
+      </div>
+      <div class="warn-card">
+        <span class="w-icon">📅</span>
+        <h3>Prazo caiu em fim de semana ou feriado?</h3>
+        <p>A data final é prorrogada automaticamente para o primeiro dia útil seguinte. Não precisa fazer nada além de enviar até esse dia.</p>
+      </div>
+      <div class="warn-card">
+        <span class="w-icon">☎️</span>
+        <h3>Data bem perto da virada de agosto/2025?</h3>
+        <p>Este guia usa agosto de 2025 como referência para a mudança da Resolução TC 289/2025. Em caso de dúvida, confirme com a Assessoria Especial de Controle Interno.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ABA 2 — SAGRES PESSOAL (Módulo de Pessoal — mensal)
+     ══════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-sagres">
+
+  <div class="info-hero-card" data-watermark="SAGRES">
+    <div class="info-icon" style="background:var(--sagres-bg); color:var(--sagres);">📊</div>
+    <h2>SAGRES — Módulo de Pessoal</h2>
+    <p class="info-desc">Envio mensal das informações de pessoal ao sistema SAGRES do TCE-PE. O envio é obrigatório <b>todo mês</b>, independentemente de haver movimentação.</p>
+
+    <div class="info-detail-row">
+      <div class="info-chip">
+        <span><span class="chip-label">Setor</span><br><span class="chip-value">GGP</span></span>
+      </div>
+      <div class="info-chip">
+        <span><span class="chip-label">Frequência</span><br><span class="chip-value">Mensal</span></span>
+      </div>
+    </div>
+
+    <div class="prazo-badge" style="background:var(--sagres-bg); color:var(--sagres);">
+      <span class="prazo-label">Prazo</span>
+      <span class="prazo-value">Todo mês</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="sei-notice">
+      <span class="sei-badge"><span class="dot"></span> Acompanhamento via SEI</span>
+      <h2>Você será avisado antes de cada prazo</h2>
+      <p class="lead">A Assessoria de Compliance acompanha este envio mensal e vai <b>alertar formalmente via SEI</b> quando o prazo estiver se aproximando. Basta ficar atento ao processo abaixo.</p>
+      <div class="sei-process">
+        <span class="label">Processo SEI</span>
+        <span class="num">nº 0060300006.000622/2025-46</span>
+      </div>
+      <div class="sei-footer-note">
+        <span>ℹ️</span>
+        <span>O envio do módulo de pessoal no SAGRES deve ser feito <b>mensalmente</b>. A Compliance vai alertar, mas a responsabilidade do envio é do setor GGP.</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ABA 3 — REMESSA TCE-PE (mensal)
+     ══════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-remessa">
+
+  <div class="info-hero-card" data-watermark="TCE">
+    <div class="info-icon" style="background:var(--remessa-bg); color:var(--remessa);">📤</div>
+    <h2>Remessa TCE-PE</h2>
+    <p class="info-desc">Envio mensal da Remessa ao e-TCEPE. Inclui dados financeiros, contábeis e de gestão exigidos mensalmente pelo Tribunal de Contas.</p>
+
+    <div class="info-detail-row">
+      <div class="info-chip">
+        <span><span class="chip-label">Setor</span><br><span class="chip-value">GCC</span></span>
+      </div>
+      <div class="info-chip">
+        <span><span class="chip-label">Frequência</span><br><span class="chip-value">Mensal</span></span>
+      </div>
+    </div>
+
+    <div class="prazo-badge" style="background:var(--remessa-bg); color:var(--remessa);">
+      <span class="prazo-label">Prazo</span>
+      <span class="prazo-value">Todo mês</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="sei-notice">
+      <span class="sei-badge"><span class="dot"></span> Acompanhamento via SEI</span>
+      <h2>Você será avisado antes de cada prazo</h2>
+      <p class="lead">A Assessoria de Compliance acompanha este envio mensal e vai <b>alertar formalmente via SEI</b> quando o prazo estiver se aproximando.</p>
+      <div class="sei-process">
+        <span class="label">Processo SEI</span>
+        <span class="num">nº 0060300064.000944/2024-10</span>
+      </div>
+      <div class="sei-footer-note">
+        <span>ℹ️</span>
+        <span>A Remessa ao e-TCEPE deve ser feita <b>mensalmente</b> pelo setor GCC. A Compliance acompanha e alerta, mas a responsabilidade do envio é do setor.</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ABA 4 — PRESTAÇÃO DE CONTAS (15 de maio)
+     ══════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-pc">
+
+  <div class="info-hero-card" data-watermark="PC">
+    <div class="info-icon" style="background:var(--pc-bg); color:var(--pc);">📋</div>
+    <h2>Prestação de Contas Anual</h2>
+    <p class="info-desc">Entrega anual de todos os documentos exigidos pela Resolução TC nº 194/2023 para Empresas Públicas e Sociedades de Economia Mista. São <b>42 itens</b> organizados abaixo por categoria.</p>
+
+    <div class="info-detail-row">
+      <div class="info-chip">
+        <span><span class="chip-label">Responsável</span><br><span class="chip-value">Todos os setores</span></span>
+      </div>
+      <div class="info-chip">
+        <span><span class="chip-label">Frequência</span><br><span class="chip-value">Anual</span></span>
+      </div>
+    </div>
+
+    <div class="prazo-badge" style="background:var(--pc-bg); color:var(--pc);">
+      <span class="prazo-label">Prazo</span>
+      <span class="prazo-value">15 de maio</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <span class="tag">42 itens obrigatórios</span>
+      <h2>Documentos da Prestação de Contas</h2>
+      <p>Clique em cada grupo para ver a lista completa de documentos que precisam ser entregues.</p>
+    </div>
+
+    <!-- Grupo 1: Documentos Institucionais -->
+    <div class="pc-group" id="pcGrp1">
+      <button class="pc-group-toggle" type="button">
+        <span class="pc-group-left">
+          <span class="pc-group-icon">📑</span>
+          <span>
+            <p class="pc-group-title">Documentos Institucionais e de Responsabilidade</p>
+            <p class="pc-group-count">5 itens</p>
+          </span>
+        </span>
+        <span class="chevron">⌄</span>
+      </button>
+      <div class="pc-group-body">
+        <div class="pc-group-body-inner">
+          <div class="pc-item"><span class="pc-item-num">1</span><span class="pc-item-text">Ofício de encaminhamento ao Tribunal de Contas</span></div>
+          <div class="pc-item"><span class="pc-item-num">2</span><span class="pc-item-text">Dados dos ordenadores de despesa, do titular do órgão ou entidade, e dos demais responsáveis pela assinatura de documentos da prestação de contas (nome, CPF, estado civil, endereço, cargo/função, ato de designação etc.)</span></div>
+          <div class="pc-item"><span class="pc-item-num">41</span><span class="pc-item-text">Pronunciamento do responsável pelo controle interno sobre a completude da documentação encaminhada na Prestação de Contas</span></div>
+          <div class="pc-item"><span class="pc-item-num">42</span><span class="pc-item-text">Termo de Responsabilidade, declarando que a documentação encaminhada corresponde ao determinado na Resolução</span></div>
+          <div class="pc-item"><span class="pc-item-num">3</span><span class="pc-item-text">Relatório Anual das Atividades de Controle Interno (RACI), previsto no Decreto Estadual nº 47.087/2019</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grupo 2: Demonstrações Contábeis -->
+    <div class="pc-group" id="pcGrp2">
+      <button class="pc-group-toggle" type="button">
+        <span class="pc-group-left">
+          <span class="pc-group-icon">📊</span>
+          <span>
+            <p class="pc-group-title">Demonstrações Contábeis e Auditoria</p>
+            <p class="pc-group-count">9 itens</p>
+          </span>
+        </span>
+        <span class="chevron">⌄</span>
+      </button>
+      <div class="pc-group-body">
+        <div class="pc-group-body-inner">
+          <div class="pc-item"><span class="pc-item-num">11</span><span class="pc-item-text">Balanço Patrimonial (Lei nº 6.404/1976)</span></div>
+          <div class="pc-item"><span class="pc-item-num">12</span><span class="pc-item-text">Demonstração do Resultado do Exercício — DRE (Lei nº 6.404/1976)</span></div>
+          <div class="pc-item"><span class="pc-item-num">13</span><span class="pc-item-text">Demonstração do Resultado Abrangente, quando couber (CPC nº 26 / CPC-PME)</span></div>
+          <div class="pc-item"><span class="pc-item-num">14</span><span class="pc-item-text">Demonstração das Mutações do Patrimônio Líquido ou Demonstração dos Lucros/Prejuízos Acumulados (Lei nº 6.404/1976, CPC nº 26)</span></div>
+          <div class="pc-item"><span class="pc-item-num">15</span><span class="pc-item-text">Declaração explícita de cumprimento das IFRS (exercício de adoção inicial, data de transição, alterações nas práticas contábeis)</span></div>
+          <div class="pc-item"><span class="pc-item-num">16</span><span class="pc-item-text">Demonstração do Fluxo de Caixa — DFC (Lei nº 11.638/2007, CPC nº 03)</span></div>
+          <div class="pc-item"><span class="pc-item-num">17</span><span class="pc-item-text">Notas explicativas das Demonstrações Contábeis, incluindo dados operacionais e financeiros da Estatal (Lei nº 6.404/1976, art. 8º, VI da Lei nº 13.303/2016)</span></div>
+          <div class="pc-item"><span class="pc-item-num">18</span><span class="pc-item-text">Parecer dos Auditores Independentes</span></div>
+          <div class="pc-item"><span class="pc-item-num">4</span><span class="pc-item-text">Pareceres dos Conselhos Fiscal e de Administração sobre as demonstrações contábeis e respectivas atas registradas na JUCEPE</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grupo 3: Controle Patrimonial e Financeiro -->
+    <div class="pc-group" id="pcGrp3">
+      <button class="pc-group-toggle" type="button">
+        <span class="pc-group-left">
+          <span class="pc-group-icon">🏦</span>
+          <span>
+            <p class="pc-group-title">Controle Patrimonial e Financeiro</p>
+            <p class="pc-group-count">6 itens</p>
+          </span>
+        </span>
+        <span class="chevron">⌄</span>
+      </button>
+      <div class="pc-group-body">
+        <div class="pc-group-body-inner">
+          <div class="pc-item"><span class="pc-item-num">5</span><span class="pc-item-text">Relação de todas as contas bancárias, registradas ou não no e-Fisco, ainda que não movimentadas (Anexo XXVI)</span></div>
+          <div class="pc-item"><span class="pc-item-num">6</span><span class="pc-item-text">Conciliações bancárias de todas as contas existentes, referentes ao último mês do exercício (Anexo IX)</span></div>
+          <div class="pc-item"><span class="pc-item-num">7</span><span class="pc-item-text">Extratos bancários de todas as contas, referentes a todos os meses do exercício</span></div>
+          <div class="pc-item"><span class="pc-item-num">8</span><span class="pc-item-text">Último inventário de bens móveis realizado (data de conclusão, membros da comissão)</span></div>
+          <div class="pc-item"><span class="pc-item-num">9</span><span class="pc-item-text">Mapa Demonstrativo dos Imóveis (Anexo X)</span></div>
+          <div class="pc-item"><span class="pc-item-num">10</span><span class="pc-item-text">Resumo dos Registros dos Imóveis (Anexo XI)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grupo 4: Licitações e Contratos -->
+    <div class="pc-group" id="pcGrp4">
+      <button class="pc-group-toggle" type="button">
+        <span class="pc-group-left">
+          <span class="pc-group-icon">📝</span>
+          <span>
+            <p class="pc-group-title">Licitações, Contratos e Obras</p>
+            <p class="pc-group-count">6 itens</p>
+          </span>
+        </span>
+        <span class="chevron">⌄</span>
+      </button>
+      <div class="pc-group-body">
+        <div class="pc-group-body-inner">
+          <div class="pc-item"><span class="pc-item-num">19</span><span class="pc-item-text">Relação das Comissões de Licitações, Pregoeiro e Equipe de Apoio (nome, portarias, CPF, endereço)</span></div>
+          <div class="pc-item"><span class="pc-item-num">20</span><span class="pc-item-text">Mapa demonstrativo consolidado de processos licitatórios, dispensas e inexigibilidades (SAGRES — LICON)</span></div>
+          <div class="pc-item"><span class="pc-item-num">21</span><span class="pc-item-text">Mapa demonstrativo consolidado de contratos, incluídos contratos de gestão (SAGRES — LICON)</span></div>
+          <div class="pc-item"><span class="pc-item-num">22</span><span class="pc-item-text">Mapa demonstrativo de contratos relacionados ao enfrentamento da emergência em saúde pública — coronavírus (Anexo XXVII)</span></div>
+          <div class="pc-item"><span class="pc-item-num">35</span><span class="pc-item-text">Mapa demonstrativo consolidado das obras e serviços de engenharia (Resolução TC nº 08/2014)</span></div>
+          <div class="pc-item"><span class="pc-item-num">36</span><span class="pc-item-text">Mapa demonstrativo de concessões e PPPs realizadas no exercício (Anexo XXIII)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grupo 5: Transferências e Parcerias -->
+    <div class="pc-group" id="pcGrp5">
+      <button class="pc-group-toggle" type="button">
+        <span class="pc-group-left">
+          <span class="pc-group-icon">🤝</span>
+          <span>
+            <p class="pc-group-title">Transferências, Convênios e Parcerias</p>
+            <p class="pc-group-count">8 itens</p>
+          </span>
+        </span>
+        <span class="chevron">⌄</span>
+      </button>
+      <div class="pc-group-body">
+        <div class="pc-group-body-inner">
+          <div class="pc-item"><span class="pc-item-num">24</span><span class="pc-item-text">Relação das transferências de recursos efetuadas e recebidas, mediante convênios em vigência (Anexo XII)</span></div>
+          <div class="pc-item"><span class="pc-item-num">25</span><span class="pc-item-text">Relação das transferências mediante termo de parceria em vigência (Anexo XIII)</span></div>
+          <div class="pc-item"><span class="pc-item-num">26</span><span class="pc-item-text">Relação das transferências mediante contrato de gestão para Organizações Sociais em vigência (Anexo XIV)</span></div>
+          <div class="pc-item"><span class="pc-item-num">27</span><span class="pc-item-text">Relação das transferências mediante contrato de repasse em vigência (Anexo XV)</span></div>
+          <div class="pc-item"><span class="pc-item-num">28</span><span class="pc-item-text">Relação das parcerias com organizações da sociedade civil (Termo de Colaboração, Termo de Fomento, Acordo de Cooperação) — Anexo XXV</span></div>
+          <div class="pc-item"><span class="pc-item-num">29</span><span class="pc-item-text">Relação de apoios financeiros mediante instrumentos de patrocínio ou copatrocínio (Anexo XVI)</span></div>
+          <div class="pc-item"><span class="pc-item-num">31</span><span class="pc-item-text">Documentos de Prestação de Contas de Organização Social — OS (Resolução TC nº 20/2005)</span></div>
+          <div class="pc-item"><span class="pc-item-num">32</span><span class="pc-item-text">Documentos de Prestação de Contas da OSCIP (Resolução TC nº 20/2005)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grupo 6: Governança e Compliance -->
+    <div class="pc-group" id="pcGrp6">
+      <button class="pc-group-toggle" type="button">
+        <span class="pc-group-left">
+          <span class="pc-group-icon">⚖️</span>
+          <span>
+            <p class="pc-group-title">Governança, Compliance e Estatais</p>
+            <p class="pc-group-count">8 itens</p>
+          </span>
+        </span>
+        <span class="chevron">⌄</span>
+      </button>
+      <div class="pc-group-body">
+        <div class="pc-group-body-inner">
+          <div class="pc-item"><span class="pc-item-num">23</span><span class="pc-item-text">Demonstrativo de adimplência anual com o Sistema SAGRES, módulo RECON1</span></div>
+          <div class="pc-item"><span class="pc-item-num">30</span><span class="pc-item-text">Demonstrativo referente às Tomadas de Contas Especiais instauradas ou em processo de instauração (Anexo XVII)</span></div>
+          <div class="pc-item"><span class="pc-item-num">33</span><span class="pc-item-text">Relatório consolidado de desempenho dos contratos de concessões e/ou PPPs (Resolução TC nº 11/2013)</span></div>
+          <div class="pc-item"><span class="pc-item-num">34</span><span class="pc-item-text">Demonstrativo de acompanhamento das determinações emitidas pelo TCE-PE nos últimos 3 anos (Anexo XVIII)</span></div>
+          <div class="pc-item"><span class="pc-item-num">37</span><span class="pc-item-text">Documentação sobre fase pré-operacional, extinção, liquidação, transformação, fusão, incorporação ou desestatização (se aplicável)</span></div>
+          <div class="pc-item"><span class="pc-item-num">38</span><span class="pc-item-text">Relatório Anual Integrado ou de Sustentabilidade (art. 8º, IX da Lei nº 13.303/2016)</span></div>
+          <div class="pc-item"><span class="pc-item-num">39</span><span class="pc-item-text">Portarias de instituição e composição: Compliance, Auditoria Interna, Comitê Estatutário, Comitê de Auditoria (Lei nº 13.303/2016, Decreto Estadual nº 43.984/2016)</span></div>
+          <div class="pc-item"><span class="pc-item-num">40</span><span class="pc-item-text">Composição do Conselho de Administração e Conselho Fiscal (art. 17 e §1º do art. 26 da Lei nº 13.303/2016)</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sei-notice">
+      <span class="sei-badge"><span class="dot"></span> Acompanhamento via SEI</span>
+      <h2>A Compliance vai coordenar a coleta dos documentos</h2>
+      <p class="lead">Antes do prazo de <b>15 de maio</b>, a Assessoria de Compliance vai acionar cada setor responsável via SEI para garantir que todos os 42 itens sejam reunidos a tempo.</p>
+      <div class="sei-footer-note">
+        <span>ℹ️</span>
+        <span>Cada setor será acionado individualmente. O importante é que todos os documentos cheguem <b>consolidados ao TCE-PE até 15 de maio</b> de cada ano.</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     ABA 5 — CADASTRO DAS UNIDADES JURISDICIONADAS
+     ══════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-cadastro">
+
+  <div class="info-hero-card" data-watermark="UJ">
+    <div class="info-icon" style="background:var(--cadastro-bg); color:var(--cadastro);">🏛️</div>
+    <h2>Cadastro das Unidades Jurisdicionadas</h2>
+    <p class="info-desc">Atualização anual do cadastro da unidade jurisdicionada junto ao TCE-PE. Deve ser feita no início de cada exercício.</p>
+
+    <div class="info-detail-row">
+      <div class="info-chip">
+        <span><span class="chip-label">Setor</span><br><span class="chip-value">DAF</span></span>
+      </div>
+      <div class="info-chip">
+        <span><span class="chip-label">Frequência</span><br><span class="chip-value">Anual</span></span>
+      </div>
+    </div>
+
+    <div class="prazo-badge" style="background:var(--cadastro-bg); color:var(--cadastro);">
+      <span class="prazo-label">Prazo</span>
+      <span class="prazo-value">31 de janeiro</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="sei-notice">
+      <span class="sei-badge"><span class="dot"></span> Acompanhamento via SEI</span>
+      <h2>Você será avisado antes do prazo</h2>
+      <p class="lead">A Assessoria de Compliance vai <b>alertar formalmente via SEI</b> o setor DAF antes do prazo de 31 de janeiro para garantir que a atualização cadastral seja feita a tempo.</p>
+      <div class="sei-footer-note">
+        <span>ℹ️</span>
+        <span>O cadastro deve refletir dados atualizados do exercício corrente. A Compliance acompanha e alerta, mas a responsabilidade é do setor <b>DAF</b>.</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="tag">O que incluir</span>
+      <h2>Informações do cadastro</h2>
+    </div>
+    <div class="warnings" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="warn-card">
+        <span class="w-icon">🏢</span>
+        <h3>Dados da entidade</h3>
+        <p>Nome oficial, CNPJ, endereço, telefone, e-mail e natureza jurídica da unidade jurisdicionada.</p>
+      </div>
+      <div class="warn-card">
+        <span class="w-icon">👤</span>
+        <h3>Dirigentes</h3>
+        <p>Nome, CPF, cargo, data de nomeação e período de gestão dos dirigentes da entidade.</p>
+      </div>
+      <div class="warn-card">
+        <span class="w-icon">📎</span>
+        <h3>Documentação de suporte</h3>
+        <p>Atos de designação, estatuto social vigente e demais documentos exigidos pelo TCE-PE.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+  <footer>
+    Baseado na Resolução TC nº 194/2023 e na Resolução TC nº 289/2025 (TCE-PE). Mural informativo da Assessoria Especial de Compliance — SUAPE. Em caso de dúvida, consulte a Assessoria Especial de Controle Interno.
+  </footer>
+</div>
+
+<script>
+(function(){
+  // ===== SISTEMA DE ABAS =====
+  const tabBar = document.getElementById('tabBar');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+
+  tabBar.addEventListener('click', function(e){
+    const btn = e.target.closest('.tab-btn');
+    if(!btn) return;
+    const tabId = btn.dataset.tab;
+
+    // Atualiza botões
+    tabBar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Atualiza painéis
+    tabPanels.forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + tabId).classList.add('active');
+
+    // Scroll suave pro topo
+    window.scrollTo({top:0, behavior:'smooth'});
+
+    // Se voltou pra aba de admissão, re-calcula altura dos accordions abertos
+    if(tabId === 'admissao'){
+      document.querySelectorAll('#panel-admissao .category.open').forEach(cat => {
+        const body = cat.querySelector('.cat-body');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      });
+    }
+  });
+
+  // ===== CALCULADORA DE ADMISSÃO (lógica original mantida) =====
+  const tipoChoices = document.getElementById('tipoChoices');
+  const dataInput = document.getElementById('dataInput');
+  const ticketWrap = document.getElementById('ticketWrap');
+  const ticketWindow = document.getElementById('ticketWindow');
+  const ticketRegime = document.getElementById('ticketRegime');
+  const ticketStub = document.getElementById('ticketStub');
+
+  const COLORS = {
+    concurso: '#2A4F9E',
+    temporaria: '#A15A16',
+    provimento: '#6E3B96'
+  };
+
+  let tipoAtual = 'concurso';
+
+  const CUTOFF = new Date(2025, 7, 1); // 1º de agosto de 2025
+
+  function calcular(){
+    if(!dataInput.value){ ticketWrap.classList.remove('show'); return; }
+    const d = new Date(dataInput.value + 'T00:00:00');
+    const month = d.getMonth()+1;
+    const year = d.getFullYear();
+    let texto = '', regimeTxt = '';
+
+    if(tipoAtual === 'temporaria'){
+      regimeTxt = 'Resolução TC 194/2023';
+      if(month <= 4){
+        texto = `01 a 15 de maio de ${year}`;
+      } else if(month <= 8){
+        texto = `01 a 15 de setembro de ${year}`;
+      } else {
+        texto = `20 de janeiro a 05 de fevereiro de ${year+1}`;
+      }
+    } else {
+      if(d >= CUTOFF){
+        regimeTxt = 'Resolução TC 289/2025';
+        if(month <= 8){
+          texto = `01 de setembro a 31 de outubro de ${year}`;
+        } else {
+          texto = `01 de janeiro a 28 de fevereiro de ${year+1}`;
+        }
+      } else {
+        regimeTxt = 'Resolução TC 194/2023';
+        if(month <= 11){
+          texto = `01 a 15 de dezembro de ${year}`;
+        } else {
+          texto = `20 de janeiro a 05 de fevereiro de ${year+1}`;
+        }
+      }
+    }
+
+    ticketWindow.textContent = texto;
+    ticketRegime.textContent = regimeTxt;
+    ticketStub.style.color = COLORS[tipoAtual];
+    ticketWrap.classList.add('show');
+  }
+
+  tipoChoices.addEventListener('click', function(e){
+    const btn = e.target.closest('.type-btn');
+    if(!btn) return;
+    tipoChoices.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    tipoAtual = btn.dataset.type;
+    calcular();
+  });
+
+  dataInput.addEventListener('change', calcular);
+
+  // ===== Acordeões (admissão) =====
+  function setupAccordions(container){
+    container.querySelectorAll('.category').forEach(cat => {
+      const toggle = cat.querySelector('.cat-toggle');
+      const body = cat.querySelector('.cat-body');
+      toggle.addEventListener('click', () => {
+        const isOpen = cat.classList.contains('open');
+        container.querySelectorAll('.category').forEach(c => {
+          c.classList.remove('open');
+          c.querySelector('.cat-body').style.maxHeight = null;
+        });
+        if(!isOpen){
+          cat.classList.add('open');
+          body.style.maxHeight = body.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // Abre o primeiro por padrão
+    const first = container.querySelector('.category');
+    if(first){
+      first.classList.add('open');
+      first.querySelector('.cat-body').style.maxHeight = first.querySelector('.cat-body').scrollHeight + 'px';
+    }
+  }
+  setupAccordions(document.getElementById('panel-admissao'));
+
+  // ===== Acordeões (prestação de contas) =====
+  document.querySelectorAll('.pc-group').forEach(grp => {
+    const toggle = grp.querySelector('.pc-group-toggle');
+    const body = grp.querySelector('.pc-group-body');
+    toggle.addEventListener('click', () => {
+      const isOpen = grp.classList.contains('open');
+      // Fecha todos os outros do mesmo painel
+      grp.closest('.tab-panel').querySelectorAll('.pc-group').forEach(g => {
+        g.classList.remove('open');
+        g.querySelector('.pc-group-body').style.maxHeight = null;
+      });
+      if(!isOpen){
+        grp.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // ===== Alternância Lista / Calendário =====
+  const viewButtons = document.querySelectorAll('.view-toggle-btn');
+  const viewList = document.getElementById('viewList');
+  const viewCalendar = document.getElementById('viewCalendar');
+  let calendarBuilt = false;
+
+  viewButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      viewButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const view = btn.dataset.view;
+      viewList.classList.toggle('show', view === 'list');
+      viewCalendar.classList.toggle('show', view === 'calendar');
+      if(view === 'calendar' && !calendarBuilt){
+        buildCalendar(2026);
+        calendarBuilt = true;
+      }
+    });
+  });
+
+  // ===== Calendário anual com os prazos marcados =====
+  const MONTH_NAMES = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  const WEEK_LETTERS = ['D','S','T','Q','Q','S','S'];
+
+  // Janelas de envio (regra vigente desde ago/2025 para Concurso/Provimento; regra única para Temporária)
+  const WINDOWS = [
+    { start:[9,1],  end:[10,31], group:'cp' },   // admissões jan–ago do mesmo ano
+    { start:[1,1],  end:[2,28],  group:'cp' },   // admissões set–dez do ano anterior
+    { start:[5,1],  end:[5,15],  group:'temp' },
+    { start:[9,1],  end:[9,15],  group:'temp' },
+    { start:[1,20], end:[2,5],   group:'temp' },
+  ];
+
+  function encode(month, day){ return month*100 + day; }
+
+  function inWindow(month, day, w){
+    const d = encode(month, day);
+    return d >= encode(w.start[0], w.start[1]) && d <= encode(w.end[0], w.end[1]);
+  }
+
+  function buildCalendar(year){
+    const container = document.getElementById('calendarGrid');
+    let html = '';
+    for(let m = 0; m < 12; m++){
+      const monthNum = m + 1;
+      const daysInMonth = new Date(year, monthNum, 0).getDate();
+      const startWeekday = new Date(year, m, 1).getDay();
+
+      let cellsHtml = '';
+      for(let i = 0; i < startWeekday; i++){
+        cellsHtml += '<div class="cal-cell empty"></div>';
+      }
+      for(let day = 1; day <= daysInMonth; day++){
+        const hasCp = WINDOWS.some(w => w.group === 'cp' && inWindow(monthNum, day, w));
+        const hasTemp = WINDOWS.some(w => w.group === 'temp' && inWindow(monthNum, day, w));
+        let cls = 'cal-cell';
+        if(hasCp) cls += ' has-cp';
+        if(hasTemp) cls += ' has-temp';
+        let dots = '';
+        if(hasCp) dots += '<span class="dot dot-cp"></span>';
+        if(hasTemp) dots += '<span class="dot dot-temp"></span>';
+        cellsHtml += `<div class="${cls}"><span class="day-num">${day}</span><span class="dots">${dots}</span></div>`;
+      }
+
+      html += `
+        <div class="mini-month">
+          <div class="mini-month-title">${MONTH_NAMES[m]}</div>
+          <div class="mini-month-weekdays">${WEEK_LETTERS.map(l => `<span>${l}</span>`).join('')}</div>
+          <div class="mini-month-grid">${cellsHtml}</div>
+        </div>`;
+    }
+    container.innerHTML = html;
+  }
+})();
+</script>
+
+</body>
+</html>
