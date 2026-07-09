@@ -311,6 +311,7 @@
   /* WARNINGS - plain */
   .warnings{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
   @media (max-width:620px){.warnings{grid-template-columns:1fr;}}
+  .warnings > .warn-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .warn-card{background:var(--gold-bg); border:1px solid #E8D6A8; border-radius:18px; padding:20px 20px;}
   .warn-card .w-icon{font-size:20px; margin-bottom:10px; display:block;}
   .warn-card h3{font-size:15.5px; font-weight:700; margin:0 0 8px; color:var(--primary-dark); font-family:'Fraunces',serif;}
@@ -519,11 +520,11 @@
     </div>
 
     <div class="view-toggle">
-      <button class="view-toggle-btn active" data-view="list" type="button"><i data-lucide='file-text' stroke-width='2.5'></i> Lista</button>
-      <button class="view-toggle-btn" data-view="calendar" type="button"><i data-lucide='calendar' stroke-width='2.5'></i> Calendário</button>
+      <button class="view-toggle-btn" data-view="list" type="button"><i data-lucide='file-text' stroke-width='2.5'></i> Lista</button>
+      <button class="view-toggle-btn active" data-view="calendar" type="button"><i data-lucide='calendar' stroke-width='2.5'></i> Calendário</button>
     </div>
 
-    <div class="deadline-view show" id="viewList">
+    <div class="deadline-view" id="viewList">
       <div class="category" data-type="concurso">
         <button class="cat-toggle" type="button">
           <span class="cat-toggle-left">
@@ -613,7 +614,7 @@
       </div>
     </div>
 
-    <div class="deadline-view" id="viewCalendar">
+    <div class="deadline-view show" id="viewCalendar">
       <div class="cal-legend">
         <span class="cal-legend-item"><span class="cal-legend-dot dot-cp"></span> Concurso Público / Provimento Derivado <span style="color:var(--ink-soft)">(regra vigente desde ago/2025)</span></span>
         <span class="cal-legend-item"><span class="cal-legend-dot dot-temp"></span> Contratação Temporária</span>
@@ -1142,10 +1143,6 @@
       const view = btn.dataset.view;
       viewList.classList.toggle('show', view === 'list');
       viewCalendar.classList.toggle('show', view === 'calendar');
-      if(view === 'calendar' && !calendarBuilt){
-        buildCalendar(2026);
-        calendarBuilt = true;
-      }
     });
   });
 
