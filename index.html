@@ -264,7 +264,11 @@
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
   }
-  .cal-legend { max-width: 880px; margin: 0 auto 24px; }
+  .cal-legend { 
+    max-width: 880px; margin: 0 auto 24px;
+    position: sticky; top: 60px; z-index: 90;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
   .cal-year-note { max-width: 880px; margin: -8px auto 24px; }
   .calendar-grid {
     max-width: 1200px; margin: 0 auto;
